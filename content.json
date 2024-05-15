@@ -58,5 +58,29 @@
     "class": "sub-item",
     "text": "CSS PREPROCESSORS: SASS",
     "element": "h4"
-  }
+  },
+  {
+    "id": "discord-span",
+    "class": "fa fa-gear",
+    "text": "",
+    "element": "i"
+  },
+  {
+    "id": "discord-end",
+    "class": "inline",
+    "text": "DISCORD BOT DEVELOPMENT CORE:",
+    "element": "h3"
+  },
+  {
+    "id": "discord-frameworks",
+    "class": "sub-item",
+    "text": "PYTHON FRAMEWORKS: Discord.py | Pycord",
+    "element": "h4"
+  },
+    {
+    "id": "discord-usecases",
+    "class": "sub-item",
+    "text": "BOT EXAMPLE FUNCTIONS: Server Management, CryptoGame Stats, Gamestats, LiveTicker, Scholar Management System",
+    "element": "h4"
+  },
 ]
