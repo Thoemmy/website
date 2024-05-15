@@ -1,38 +1,33 @@
 @import url(https://fonts.googleapis.com/css?family=Share+Tech);
+
+:root {
+  --fa-style-family: var(--fa-style-family-classic);
+  --fa-style: 900;
+}
+
+
 body {
   background-color: #000;
 }
 
-h1 {
-  font-family: "Share Tech";
-  animation: pulse 0.9s infinite;
-  color: #ffffff;
-}
-
-#identity-results,
 #resume,
-#loading-alpha-div,
-#loadingH1,
-#loadingMessage2,
-#message {
+#loadingH1 {
   margin-top: 20px;
   font-family: "Share Tech";
   font-weight: 900;
   font-size: 24px;
   color: #ffffff;
-  animation: pulse 0.9s infinite;
+  animation: pulse 1s infinite;
+}
+
+h3 {
+  margin: 20px 0 20px 0;
 }
 
 i {
   font-size: 24px;
   color: #ffffff;
-  animation: pulse 0.9s infinite;
-}
-
-.block {
-  width: 50px;
-  height: 50px;
-  background-color: #000;
+  /* animation: pulse 0.9s infinite; */
 }
 
 @keyframes pulse {
@@ -52,10 +47,6 @@ i {
   animation: cursor 1s infinite;
 }
 
-.sign:before {
-  content: "> ";
-}
-
 @keyframes cursor {
   0% {
     opacity: 0;
@@ -73,23 +64,19 @@ i {
     opacity: 0;
   }
 }
-#loading-alpha-div,
-.img-div {
-  display: none;
-}
 
-img {
-  margin: 50px 0;
-  animation: pulse 0.9s infinite;
-}
-
-#loadingMessage2 {
-  display: none;
-}
-
+/* Custom classes */ 
 .sub-item {
   margin-top: 20px;
   margin-left: 40px;
+}
+
+.sub-item:before {
+  content: "> ";
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .inline {
@@ -97,4 +84,8 @@ img {
   margin-left: 10px;
 }
 
-/*# sourceMappingURL=styles.css.map */
+a {
+  color: blue;
+  cursor: pointer;
+  text-decoration: none
+}

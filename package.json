@@ -1,0 +1,14 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Resume Website",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Kopitsch",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^17.0.0"
+  }
+}

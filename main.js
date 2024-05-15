@@ -1,3 +1,7 @@
+var jsonData = require("./content.json");
+
+var starterdelay = 1500; // This value is used to hide ithe initial loading text and then start the writing of the sentenses
+
 document.addEventListener("DOMContentLoaded", function () {
   var initDot = document.getElementById("loading");
   var loading = setInterval(function () {
@@ -6,125 +10,30 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       initDot.innerHTML += ".";
     }
-  }, 350); //dot speed
+  }, 350); //to set the initial dot speed
 
   var $loadingMessage = $("#loadingH1");
 
   setTimeout(function () {
     clearInterval(loading);
     $loadingMessage.hide();
-  }, 1500);
-
-  var jsonData = [
-  {
-    id: 'name',
-    class: '',
-    text: 'NAME: Thomas Kopitsch',
-    element: 'h3',
-  },
-  {
-    id: 'alias',
-    class: '',
-    text: 'KNOWN ALIAS: thoemmy',
-    element: 'h3',
-  },
-  {
-    id: 'occupation',
-    class: '',
-    text: 'OCCUPATION: FULL STACK DEVELOPER',
-    element: 'h3',
-  },
-  {
-    id: '',
-    class: '',
-    text: '',
-    element: 'br',
-  },
-  {
-    id: 'fullstack-end-span',
-    class: 'fa fa-wrench',
-    text: '',
-    element: 'i',
-  },
-  {
-    id: 'fullstack-end',
-    class: 'inline',
-    text: 'FULL STACK DEVELOPMENT CORE:',
-    element: 'h3',
-  },
-  {
-    id: 'js-frameworks',
-    class: 'sub-item',
-    text: 'JAVASCRIPT FRAMEWORKS: ANGULAR | NESTJS',
-    element: 'h4',
-  },
-  {
-    id: 'ui-frameworks',
-    class: 'sub-item',
-    text: 'UI FRAMEWORKS: PRIMENG',
-    element: 'h4',
-  },
-  {
-    id: 'js-libs',
-    class: 'sub-item',
-    text: 'JAVASCRIPT LIBRARIES: JQUERY',
-    element: 'h4',
-  },
-  {
-    id: 'css-frameworks',
-    class: 'sub-item',
-    text: 'CSS FRAMEWORKS: PRIMEFLEX',
-    element: 'h4',
-  },
-  {
-    id: 'css-pre',
-    class: 'sub-item',
-    text: 'CSS PREPROCESSORS: SASS',
-    element: 'h4',
-  },
-  {
-    id: '',
-    class: '',
-    text: '',
-    element: 'br',
-  },
-  {
-    id: 'discord-span',
-    class: 'fa fa-gear',
-    text: '',
-    element: 'i',
-  },
-  {
-    id: 'discord-end',
-    class: 'inline',
-    text: 'DISCORD BOT DEVELOPMENT CORE:',
-    element: 'h3',
-  },
-  {
-    id: 'discord-frameworks',
-    class: 'sub-item',
-    text: 'PYTHON FRAMEWORKS: Discord.py | Pycord',
-    element: 'h4',
-  },
-  {
-    id: 'discord-usecases',
-    class: 'sub-item',
-    text: 'BOT EXAMPLE FUNCTIONS: Server Management, CryptoGame Stats, Gamestats, LiveTicker, Scholar Management System',
-    element: 'h4',
-  },
-];
+  }, starterdelay);
 
   function initElements(data, index) {
     var elementData = data[index];
     var element = document.createElement(elementData.element);
-    element.id = elementData.id;
-    element.className = elementData.class;
 
-    if (elementData.class === "sub-item") {
-      var text = "> " + elementData.text;
-    } else {
-      var text = elementData.text;
+    if (elementData.id) element.id = elementData.id;
+    console.log(elementData.class);
+    if (elementData.class) element.className = elementData.class;
+
+    if (elementData.element === "a") {
+      element.href = elementData.href;
+      element.target = elementData.target;
     }
+
+    var text = elementData.text;
+
     var i = 0;
 
     var typingAnimation = setInterval(function () {
@@ -139,13 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (index + 1 < data.length) {
               initElements(data, index + 1);
             }
-          }, 1500);
+          }, 1000); // with this setTimeout you can control when the next sentense will be written
         } else {
           initElements(data, index + 1);
         }
       }
-    }, 35);
-
+    }, 30); // This is for the speed which is used to write the sentense
     var container = $("#resume");
     container.append(element);
     element.classList.add("cursor");
@@ -153,5 +61,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setTimeout(function () {
     initElements(jsonData, 0);
-  }, 1500);
+  }, starterdelay);
 });
