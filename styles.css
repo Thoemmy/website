@@ -5,7 +5,6 @@
   --fa-style: 900;
 }
 
-
 body {
   background-color: #000;
 }
@@ -17,7 +16,7 @@ body {
   font-weight: 900;
   font-size: 24px;
   color: #ffffff;
-  animation: pulse 1s infinite;
+  /*animation: pulse 1s infinite;*/
 }
 
 h3 {
@@ -65,7 +64,7 @@ i {
   }
 }
 
-/* Custom classes */ 
+/* Custom classes */
 .sub-item {
   margin-top: 20px;
   margin-left: 40px;
@@ -85,7 +84,7 @@ i {
 }
 
 a {
-  color: blue;
+  color: #d6336c;
   cursor: pointer;
-  text-decoration: none
+  text-decoration: none;
 }

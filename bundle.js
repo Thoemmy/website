@@ -160,6 +160,15 @@ var jsonData = require("./content.json");
 var starterdelay = 1500; // This value is used to hide ithe initial loading text and then start the writing of the sentenses
 
 document.addEventListener("DOMContentLoaded", function () {
+  //document.getElementById("refreshButton").onclick = refresh;
+
+  function scrollToBottom() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  }
+
   var initDot = document.getElementById("loading");
   var loading = setInterval(function () {
     if (initDot.innerHTML.length == 5) {
@@ -181,12 +190,17 @@ document.addEventListener("DOMContentLoaded", function () {
     var element = document.createElement(elementData.element);
 
     if (elementData.id) element.id = elementData.id;
-    console.log(elementData.class);
     if (elementData.class) element.className = elementData.class;
 
     if (elementData.element === "a") {
       element.href = elementData.href;
       element.target = elementData.target;
+    }
+
+    if (elementData.element === "img") {
+      element.src = elementData.src;
+      element.height = elementData.height || "180";
+      element.width = elementData.width || "320";
     }
 
     var text = elementData.text;
@@ -195,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var typingAnimation = setInterval(function () {
       if (i < text.length) {
+        scrollToBottom();
         element.innerHTML += text.charAt(i);
         i++;
       } else {
@@ -220,5 +235,9 @@ document.addEventListener("DOMContentLoaded", function () {
     initElements(jsonData, 0);
   }, starterdelay);
 });
+
+//function refresh() {
+//  window.location.reload();
+//}
 
 },{"./content.json":1}]},{},[2]);

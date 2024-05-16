@@ -29,7 +29,7 @@ element - takes the html element you want to add
 The programm will loop through the list normally ^^ means the first entry is the first written sentense.
 
 ```json
-//special support for links ;)
+// support for links ;)
   {
     "id": "",
     "class": "uppercase",
@@ -37,6 +37,18 @@ The programm will loop through the list normally ^^ means the first entry is the
     "href": "https://github.com/xyz/",
     "target": "_blank",
     "element": "a"
+  }
+```
+
+```json
+// support for images
+  {
+    "id": "",
+    "class": "",
+    "element": "img",
+    "src": "https://url-to-image.com",
+    "width": "",
+    "height": ""
   }
 ```
 
