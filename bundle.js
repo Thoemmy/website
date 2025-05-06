@@ -15,7 +15,7 @@ module.exports=[
   {
     "id": "occupation",
     "class": "uppercase",
-    "text": "occupation: Junior Software Developer",
+    "text": "occupation: Software Developer",
     "element": "h3"
   },
   {
@@ -45,31 +45,25 @@ module.exports=[
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "javascript frameworks: angular | nestjs",
+    "text": "languages: javascript | typescript | python",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "UI frameworks: angular material | primeng",
+    "text": "frameworks: angular | nestjs | react",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "css frameworks: primeflex",
+    "text": "databases: postgres | mongodb | mssql",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "css preprocessors: sass",
-    "element": "h4"
-  },
-  {
-    "id": "",
-    "class": "sub-item uppercase",
-    "text": "databases: postgres | mongodb",
+    "text": "UI libraries: angular material | primeng",
     "element": "h4"
   },
   {
@@ -123,19 +117,25 @@ module.exports=[
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "docker basic",
+    "text": "docker",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "kubernetes basic",
+    "text": "helm",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "helm basic",
+    "text": "kubernetes | Rancher & OpenShift",
+    "element": "h4"
+  },
+  {
+    "id": "",
+    "class": "sub-item uppercase",
+    "text": "DevOps - CI/CD Pipeline automation",
     "element": "h4"
   },
   {
