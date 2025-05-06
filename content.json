@@ -14,7 +14,7 @@
   {
     "id": "occupation",
     "class": "uppercase",
-    "text": "occupation: Junior Software Developer",
+    "text": "occupation: Software Developer",
     "element": "h3"
   },
   {
@@ -44,31 +44,25 @@
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "javascript frameworks: angular | nestjs",
+    "text": "languages: javascript | typescript | python",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "UI frameworks: angular material | primeng",
+    "text": "frameworks: angular | nestjs | react",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "css frameworks: primeflex",
+    "text": "databases: postgres | mongodb | mssql",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "css preprocessors: sass",
-    "element": "h4"
-  },
-  {
-    "id": "",
-    "class": "sub-item uppercase",
-    "text": "databases: postgres | mongodb",
+    "text": "UI libraries: angular material | primeng",
     "element": "h4"
   },
   {
