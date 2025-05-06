@@ -116,19 +116,25 @@
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "docker basic",
+    "text": "docker",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "kubernetes basic",
+    "text": "helm",
     "element": "h4"
   },
   {
     "id": "",
     "class": "sub-item uppercase",
-    "text": "helm basic",
+    "text": "kubernetes | Rancher & OpenShift",
+    "element": "h4"
+  },
+  {
+    "id": "",
+    "class": "sub-item uppercase",
+    "text": "DevOps - CI/CD Pipeline automation",
     "element": "h4"
   },
   {
