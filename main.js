@@ -1,84 +1,105 @@
-var jsonData = require("./content.json");
+// Typewriter effect over the static resume markup.
+// The content lives in index.html, so it is readable without JavaScript and by crawlers;
+// this script only empties it and types it back in.
 
-var starterdelay = 1500; // This value is used to hide ithe initial loading text and then start the writing of the sentenses
+var LOADING_DELAY = 900; // how long the "running identity protocol" intro is shown
+var CHAR_DELAY = 12; // ms per typed character
+var LINE_DELAY = 180; // pause between lines
+var LINE_SELECTOR = "h1, h2, h3, p, li";
 
 document.addEventListener("DOMContentLoaded", function () {
-  //document.getElementById("refreshButton").onclick = refresh;
+  var root = document.documentElement;
+  if (!root.classList.contains("typing")) return;
 
-  function scrollToBottom() {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth",
+  var resume = document.getElementById("resume");
+  var loading = document.getElementById("loading");
+  var dots = document.getElementById("dots");
+  var skipButton = document.getElementById("skip");
+  var finished = false;
+  var timer;
+
+  // Every line keeps its text nodes and their original text, then gets emptied.
+  var lines = Array.prototype.map.call(resume.querySelectorAll(LINE_SELECTOR), function (el) {
+    var nodes = [];
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      // Skip text that belongs to a nested line; that line types it itself.
+      if (walker.currentNode.parentElement.closest(LINE_SELECTOR) !== el) continue;
+      nodes.push({ node: walker.currentNode, text: walker.currentNode.nodeValue });
+      walker.currentNode.nodeValue = "";
+    }
+    el.classList.add("pending");
+    return { el: el, nodes: nodes };
+  });
+
+  resume.setAttribute("aria-busy", "true");
+  root.classList.add("typing-ready");
+  skipButton.hidden = false;
+
+  var dotTimer = setInterval(function () {
+    dots.textContent = dots.textContent.length >= 5 ? "" : dots.textContent + ".";
+  }, 300);
+
+  function finish() {
+    if (finished) return;
+    finished = true;
+    clearTimeout(timer);
+    clearInterval(dotTimer);
+    loading.hidden = true;
+    skipButton.hidden = true;
+    lines.forEach(function (line) {
+      line.nodes.forEach(function (n) {
+        n.node.nodeValue = n.text;
+      });
+      line.el.classList.remove("pending", "cursor");
     });
+    resume.removeAttribute("aria-busy");
+    root.classList.remove("typing", "typing-ready");
+    try {
+      localStorage.setItem("resume-seen", "1");
+    } catch (e) {}
+    document.removeEventListener("keydown", onKey);
   }
 
-  var initDot = document.getElementById("loading");
-  var loading = setInterval(function () {
-    if (initDot.innerHTML.length == 5) {
-      initDot.innerHTML = "";
-    } else {
-      initDot.innerHTML += ".";
-    }
-  }, 350); //to set the initial dot speed
+  function typeLine(lineIndex, nodeIndex, charIndex) {
+    if (finished) return;
+    var line = lines[lineIndex];
+    if (!line) return finish();
 
-  var $loadingMessage = $("#loadingH1");
-
-  setTimeout(function () {
-    clearInterval(loading);
-    $loadingMessage.hide();
-  }, starterdelay);
-
-  function initElements(data, index) {
-    var elementData = data[index];
-    var element = document.createElement(elementData.element);
-
-    if (elementData.id) element.id = elementData.id;
-    if (elementData.class) element.className = elementData.class;
-
-    if (elementData.element === "a") {
-      element.href = elementData.href;
-      element.target = elementData.target;
+    if (nodeIndex === 0 && charIndex === 0) {
+      line.el.classList.remove("pending");
+      line.el.classList.add("cursor");
+      line.el.scrollIntoView({ block: "nearest", behavior: "smooth" });
     }
 
-    if (elementData.element === "img") {
-      element.src = elementData.src;
-      element.height = elementData.height || "180";
-      element.width = elementData.width || "320";
+    var current = line.nodes[nodeIndex];
+    if (!current) {
+      line.el.classList.remove("cursor");
+      timer = setTimeout(typeLine, LINE_DELAY, lineIndex + 1, 0, 0);
+      return;
     }
-
-    var text = elementData.text;
-
-    var i = 0;
-
-    var typingAnimation = setInterval(function () {
-      if (i < text.length) {
-        scrollToBottom();
-        element.innerHTML += text.charAt(i);
-        i++;
-      } else {
-        clearInterval(typingAnimation);
-        element.classList.remove("cursor");
-        if (elementData.element !== "i" && elementData.element !== "br") {
-          setTimeout(function () {
-            if (index + 1 < data.length) {
-              initElements(data, index + 1);
-            }
-          }, 1000); // with this setTimeout you can control when the next sentense will be written
-        } else {
-          initElements(data, index + 1);
-        }
-      }
-    }, 30); // This is for the speed which is used to write the sentense
-    var container = $("#resume");
-    container.append(element);
-    element.classList.add("cursor");
+    if (charIndex >= current.text.length) {
+      return typeLine(lineIndex, nodeIndex + 1, 0);
+    }
+    current.node.nodeValue += current.text.charAt(charIndex);
+    timer = setTimeout(typeLine, CHAR_DELAY, lineIndex, nodeIndex, charIndex + 1);
   }
 
-  setTimeout(function () {
-    initElements(jsonData, 0);
-  }, starterdelay);
+  function onKey(event) {
+    if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
+      if (event.target.closest("a, button")) return; // let links and the skip button handle their own keys
+      event.preventDefault();
+      finish();
+    }
+  }
+
+  skipButton.addEventListener("click", finish);
+  window.addEventListener("beforeprint", finish);
+  document.addEventListener("keydown", onKey);
+
+  timer = setTimeout(function () {
+    clearInterval(dotTimer);
+    loading.hidden = true;
+    typeLine(0, 0, 0);
+  }, LOADING_DELAY);
 });
-
-//function refresh() {
-//  window.location.reload();
-//}

@@ -1,31 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <!--
-    Thanks to PETRUS REX which provided the initial template for this resume
-    Ive refactored the logic to meet my personal scope and usecase.
-    Original codepen example -> https://codepen.io/Gothburz/pen/YyLMVx
+    Typewriter idea based on the codepen by Gothburz (https://codepen.io/Gothburz/pen/YyLMVx),
+    refactored for my own use case.
 -->
 
 <head>
     <meta charset="UTF-8">
-    <title>Resume</title>
-    <meta name="description" content="Resume">
-    <meta name="author" content="Thomas Kopitsch">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Kopitsch – Software Developer</title>
+    <meta name="description" content="Thomas Kopitsch (thoemmy) – Software Developer. Full-stack TypeScript, Angular, NestJS, Python, Kubernetes and CI/CD.">
+    <meta name="author" content="Thomas Kopitsch">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://resume.thoemmy.com/">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://resume.thoemmy.com/">
+    <meta property="og:title" content="Thomas Kopitsch – Software Developer">
+    <meta property="og:description" content="Full-stack TypeScript, Angular, NestJS, Python, Kubernetes and CI/CD.">
+    <meta property="profile:first_name" content="Thomas">
+    <meta property="profile:last_name" content="Kopitsch">
+    <meta property="profile:username" content="thoemmy">
+    <meta name="twitter:card" content="summary">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="./bundle.js"></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23000'/%3E%3Ctext x='4' y='23' font-family='monospace' font-size='18' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Thomas Kopitsch",
+        "alternateName": "thoemmy",
+        "jobTitle": "Software Developer",
+        "url": "https://resume.thoemmy.com/",
+        "sameAs": ["https://github.com/Thoemmy/"]
+    }
+    </script>
+
+    <link rel="preload" href="./fonts/share-tech-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="./styles.css" rel="stylesheet">
+
+    <script>
+        // Decide before first paint whether the typing animation runs, so the full text never flashes.
+        (function () {
+            var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            var seen = false;
+            try { seen = localStorage.getItem("resume-seen") === "1"; } catch (e) {}
+            if (!reduced && !seen) document.documentElement.classList.add("typing");
+        })();
+    </script>
+    <script src="./main.js" defer></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1 id="loadingH1"><span><i class="fa fa-cogs"></i></span> RUNNING IDENTITY PROTOCOL<span id="loading">.</span>
-        </h1>
-        <div id="resume"></div>
-    </div>
+    <main class="container">
+        <p id="loading" aria-hidden="true">&gt; running identity protocol<span id="dots">.</span></p>
+        <button id="skip" type="button" hidden>skip &#9656;</button>
+
+        <article id="resume">
+            <header>
+                <h1>Thomas Kopitsch</h1>
+                <p class="meta">known alias: thoemmy</p>
+                <p class="meta">occupation: Software Developer</p>
+            </header>
+
+            <section>
+                <h2>Full-stack development</h2>
+                <ul>
+                    <li>languages: JavaScript | TypeScript | Python</li>
+                    <li>frameworks: Angular | NestJS | React</li>
+                    <li>databases: Postgres | MongoDB | MSSQL</li>
+                    <li>UI libraries: Angular Material | PrimeNG</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Discord bot development</h2>
+                <ul>
+                    <li>python frameworks: Discord.py | Pycord</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Additional skills</h2>
+                <ul>
+                    <li>Git</li>
+                    <li>Docker</li>
+                    <li>Helm</li>
+                    <li>Kubernetes | Rancher &amp; OpenShift</li>
+                    <li>DevOps – CI/CD pipeline automation</li>
+                </ul>
+            </section>
+
+            <footer>
+                <p><a href="https://github.com/Thoemmy/" rel="me noopener" target="_blank">github.com/Thoemmy</a></p>
+            </footer>
+        </article>
+    </main>
 </body>
 
 </html>

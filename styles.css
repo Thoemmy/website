@@ -1,90 +1,178 @@
-@import url(https://fonts.googleapis.com/css?family=Share+Tech);
+/* Share Tech, self-hosted (SIL OFL 1.1, see fonts/OFL.txt) */
+@font-face {
+  font-family: "Share Tech";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/share-tech-latin-400-normal.woff2") format("woff2");
+}
 
 :root {
-  --fa-style-family: var(--fa-style-family-classic);
-  --fa-style: 900;
+  --bg: #000;
+  --fg: #fff;
+  --muted: #b5b5b5;
+  --accent: #ff4d8d;
+  color-scheme: dark;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 body {
-  background-color: #000;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Share Tech", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 20px;
+  line-height: 1.5;
 }
 
-#resume,
-#loadingH1 {
-  margin-top: 20px;
-  font-family: "Share Tech";
-  font-weight: 900;
-  font-size: 24px;
-  color: #ffffff;
-  /*animation: pulse 1s infinite;*/
+.container {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 2.2em;
+  margin: 0 0 0.25em;
+}
+
+h2 {
+  font-size: 1.25em;
+  margin: 2em 0 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h2:before {
+  content: "## ";
+  color: var(--muted);
 }
 
 h3 {
-  margin: 20px 0 20px 0;
+  font-size: 1.05em;
+  margin: 1.25em 0 0.25em;
 }
 
-i {
-  font-size: 24px;
-  color: #ffffff;
-  /* animation: pulse 0.9s infinite; */
+p {
+  margin: 0.4em 0;
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.cursor:after {
-  content: "_";
-  opacity: 0;
-  animation: cursor 1s infinite;
+.meta {
+  color: var(--muted);
 }
 
-@keyframes cursor {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1.5em;
 }
 
-/* Custom classes */
-.sub-item {
-  margin-top: 20px;
-  margin-left: 40px;
+li {
+  margin: 0.35em 0;
 }
 
-.sub-item:before {
+li:before {
   content: "> ";
+  color: var(--muted);
 }
 
-.uppercase {
-  text-transform: uppercase;
-}
-
-.inline {
-  display: inline;
-  margin-left: 10px;
+footer {
+  margin-top: 2.5em;
 }
 
 a {
-  color: #d6336c;
-  cursor: pointer;
+  color: var(--accent);
   text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Typing animation (only when main.js runs it) */
+#loading {
+  display: none;
+  font-size: 1.25em;
+  text-transform: uppercase;
+}
+
+.typing #loading {
+  display: block;
+}
+
+.typing #resume {
+  visibility: hidden;
+}
+
+.typing-ready #resume {
+  visibility: visible;
+}
+
+.pending {
+  visibility: hidden;
+}
+
+#skip {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font: inherit;
+  font-size: 0.85em;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  padding: 0.2em 0.7em;
+  cursor: pointer;
+}
+
+#skip:hover,
+#skip:focus-visible {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+.cursor:after {
+  content: "_";
+  animation: cursor 1s steps(1) infinite;
+}
+
+@keyframes cursor {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+@media print {
+  #skip,
+  #loading {
+    display: none !important;
+  }
+
+  .pending,
+  #resume {
+    visibility: visible !important;
+  }
 }
