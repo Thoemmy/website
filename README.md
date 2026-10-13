@@ -1,61 +1,34 @@
-## Path to success
-1. run `npm i`
-2. make changes what you wanna to do
-3. vbundle main js with the browserify package like following `npx browserify main.js -o bundle.js`
-4. Thats it
+# resume.thoemmy.com
 
-### Configuration of content.json
+Personal calling-card page of Thomas Kopitsch, served via GitHub Pages.
 
-It should be as simple as it is.
+## Structure
 
-You can define an html element inside the schema
+- `index.html` – the content, as plain semantic HTML (readable without JavaScript, by search engines and by link previews)
+- `main.js` – optional typewriter effect: empties the text in `#resume` and types it back in
+- `styles.css` – styling, terminal look
+- `fonts/` – self-hosted Share Tech font (SIL OFL 1.1), so no third-party requests are made
 
-```json
-  {
-    "id": "element-id",
-    "class": "some-styling-class",
-    "text": "Welcome",
-    "element": "h1"
-  }
-```
+No build step and no dependencies: edit `index.html`, commit, done.
 
-Lets break it down:
+## Editing content
 
-id - here you can add an unique id tag to the element if you want, its optional because right now it does not even have a function ^^
-class - here you can add your custom css classes to the element
-text - this representate the innerHTML value of the element, so no other types are supportet only html elements with an innerhtml , this can be extended with a type property in the json for example
-element - takes the html element you want to add
+Everything inside `<article id="resume">` is typed line by line. A "line" is any `h1`, `h2`, `h3`, `p` or `li`
+(see `LINE_SELECTOR` in `main.js`). Links inside a line are typed as well.
 
-The programm will loop through the list normally ^^ means the first entry is the first written sentense.
+When updating the content, also keep the `<title>`, the `description` / `og:*` meta tags and the JSON-LD block
+in the `<head>` in sync.
 
-```json
-// support for links ;)
-  {
-    "id": "",
-    "class": "uppercase",
-    "text": "Check out my Github",
-    "href": "https://github.com/xyz/",
-    "target": "_blank",
-    "element": "a"
-  }
-```
+## Typing behaviour
 
-```json
-// support for images
-  {
-    "id": "",
-    "class": "",
-    "element": "img",
-    "src": "https://url-to-image.com",
-    "width": "",
-    "height": ""
-  }
-```
+- Speed is controlled by `LOADING_DELAY`, `CHAR_DELAY` and `LINE_DELAY` in `main.js`.
+- Visitors can skip with the "skip" button, `Esc`, `Enter` or `Space`.
+- The animation only plays on the first visit (remembered in `localStorage`) and never for visitors with
+  "reduce motion" enabled or without JavaScript.
 
-### Finishing Note
-Feel free to copy fork or whatever with this code.
-If this small piece of code is an inspiration for you i am happy enought.
+To see the animation again locally, run `localStorage.removeItem("resume-seen")` in the browser console.
 
-Thanks to gothburz which provided the initial idea/code which i have modified for my own purpose
-- https://github.com/gothburz
-- https://codepen.io/Gothburz/pen/YyLMVx <- copepen example
+## Credits
+
+Typewriter idea based on [this codepen](https://codepen.io/Gothburz/pen/YyLMVx) by
+[Gothburz](https://github.com/gothburz).

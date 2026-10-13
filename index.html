@@ -1,31 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <!--
-    Thanks to PETRUS REX which provided the initial template for this resume
-    Ive refactored the logic to meet my personal scope and usecase.
-    Original codepen example -> https://codepen.io/Gothburz/pen/YyLMVx
+    Typewriter idea based on the codepen by Gothburz (https://codepen.io/Gothburz/pen/YyLMVx),
+    refactored for my own use case.
 -->
 
 <head>
     <meta charset="UTF-8">
-    <title>Resume</title>
-    <meta name="description" content="Resume">
-    <meta name="author" content="Thomas Kopitsch">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Kopitsch – Software Engineer</title>
+    <meta name="description" content="Thomas Kopitsch (thoemmy) – Software Engineer at Hirschmann Automotive. Platform and full-stack: golden path templates, SDKs, CI/CD, Angular, NestJS, Kubernetes.">
+    <meta name="author" content="Thomas Kopitsch">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://resume.thoemmy.com/">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://resume.thoemmy.com/">
+    <meta property="og:title" content="Thomas Kopitsch – Software Engineer">
+    <meta property="og:description" content="Platform &amp; full-stack engineer: golden path templates, SDKs, CI/CD, Angular, NestJS, Kubernetes.">
+    <meta property="profile:first_name" content="Thomas">
+    <meta property="profile:last_name" content="Kopitsch">
+    <meta property="profile:username" content="thoemmy">
+    <meta name="twitter:card" content="summary">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="./bundle.js"></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23000'/%3E%3Ctext x='4' y='23' font-family='monospace' font-size='18' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Thomas Kopitsch",
+        "alternateName": "thoemmy",
+        "jobTitle": "Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Hirschmann Automotive GmbH" },
+        "url": "https://resume.thoemmy.com/",
+        "sameAs": [
+            "https://www.linkedin.com/in/thomas-kopitsch-84941b202/",
+            "https://github.com/Thoemmy/"
+        ]
+    }
+    </script>
+
+    <link rel="preload" href="./fonts/share-tech-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="./styles.css" rel="stylesheet">
+
+    <script>
+        // Decide before first paint whether the typing animation runs, so the full text never flashes.
+        (function () {
+            var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            var seen = false;
+            try { seen = localStorage.getItem("resume-seen") === "1"; } catch (e) {}
+            if (!reduced && !seen) document.documentElement.classList.add("typing");
+        })();
+    </script>
+    <script src="./main.js" defer></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1 id="loadingH1"><span><i class="fa fa-cogs"></i></span> RUNNING IDENTITY PROTOCOL<span id="loading">.</span>
-        </h1>
-        <div id="resume"></div>
-    </div>
+    <main class="container">
+        <p id="loading" aria-hidden="true">&gt; running identity protocol<span id="dots">.</span></p>
+        <button id="skip" type="button" hidden>skip &#9656;</button>
+
+        <article id="resume">
+            <header>
+                <h1>Thomas Kopitsch</h1>
+                <p class="meta">Software Engineer · Platform &amp; Full-Stack · aka thoemmy</p>
+                <p>I build the golden path for internal applications at Hirschmann Automotive: templates, shared SDKs,
+                    CI/CD and the standards behind them, so teams can start and ship web apps on a common, secure foundation.</p>
+            </header>
+
+            <section>
+                <h2>Experience</h2>
+                <h3>Software Engineer · Hirschmann Automotive GmbH</h3>
+                <p class="meta">4 years as Software Engineer · 12 years with the company</p>
+                <ul>
+                    <li>Built the company's golden path for internal apps: the Odin Template and the Odin SDK</li>
+                    <li>Created the global company standard for software development and management (ITIL-based)</li>
+                    <li>Set up the CI/CD pipelines for web applications</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Selected work</h2>
+                <ul>
+                    <li><strong>Odin Template</strong> – Angular + NestJS starter template for internal apps</li>
+                    <li><strong>Odin SDK</strong> – shared component library for internal apps</li>
+                    <li><strong>SLSA Level 3</strong> – supply-chain compliance integrated into CI/CD</li>
+                    <li><strong>Enterprise Service Bus</strong> – development of the integration layer between systems</li>
+                    <li><strong>Monitoring</strong> – rollout of Uptime Kuma</li>
+                    <li><strong>Business apps</strong> – Event Application, Welding Attempt Report Application</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Stack</h2>
+                <ul>
+                    <li>languages: TypeScript | JavaScript | Python</li>
+                    <li>frontend: Angular | React | Angular Material | PrimeNG</li>
+                    <li>backend: NestJS | Postgres | MongoDB | MSSQL</li>
+                    <li>platform: Docker | Kubernetes (Rancher, OpenShift) | Helm | CI/CD</li>
+                    <li>side projects: Discord bots with Pycord / discord.py</li>
+                </ul>
+            </section>
+
+            <footer>
+                <p><a href="https://www.linkedin.com/in/thomas-kopitsch-84941b202/" rel="me noopener" target="_blank">linkedin.com/in/thomas-kopitsch</a></p>
+                <p><a href="https://github.com/Thoemmy/" rel="me noopener" target="_blank">github.com/Thoemmy</a></p>
+            </footer>
+        </article>
+    </main>
 </body>
 
 </html>
