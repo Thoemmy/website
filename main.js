@@ -3,8 +3,8 @@
 // this script only empties it and types it back in.
 
 var LOADING_DELAY = 900; // how long the "running identity protocol" intro is shown
-var CHAR_DELAY = 12; // ms per typed character
-var LINE_DELAY = 180; // pause between lines
+var CHAR_DELAY = 8; // ms per typed character
+var LINE_DELAY = 120; // pause between lines
 var LINE_SELECTOR = "h1, h2, h3, p, li";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     while (walker.nextNode()) {
       // Skip text that belongs to a nested line; that line types it itself.
       if (walker.currentNode.parentElement.closest(LINE_SELECTOR) !== el) continue;
-      nodes.push({ node: walker.currentNode, text: walker.currentNode.nodeValue });
+      nodes.push({ node: walker.currentNode, text: walker.currentNode.nodeValue.replace(/\s+/g, " ") });
       walker.currentNode.nodeValue = "";
     }
     el.classList.add("pending");
